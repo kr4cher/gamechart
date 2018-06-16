@@ -1,0 +1,28 @@
+﻿(() => {
+    document.addEventListener("DOMContentLoaded", (event) => {
+        var d = document.getElementsByClassName("button")[0];
+        d.onclick = onButtonClick();
+    });
+
+    function onButtonClick() {
+        return () => {
+            var xhr = new XMLHttpRequest();
+            var text = document.getElementsByClassName("text")[0];
+            xhr.open("GET", '/Home/APIAnswer?call=' + text.value, true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onreadystatechange = (() => {
+                if (xhr.readyState == xhr.DONE && xhr.status) {
+                    if (xhr.responseText != "" && xhr.responseText != "Invalid customer ID") {
+                        var res = JSON.parse(xhr.responseText);
+                        var lable = document.getElementsByClassName("lable")[0];
+                        lable.innerHTML = res;
+                    }
+                    else {
+                        expandButton.parentElement.parentElement.remove();
+                    }
+                }
+            });
+            xhr.send();
+        }
+    }
+})(); 
