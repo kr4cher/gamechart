@@ -148,16 +148,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiRequestHandler.cs" />
     <Compile Include="Controllers\CustomHTMLHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FrontendRequest\Filter.cs" />
     <Compile Include="Models\Games\Cover.cs" />
     <Compile Include="Models\Games\Game.cs" />
     <Compile Include="Models\Games\AlternativeName.cs" />
     <Compile Include="Models\Games\ReleaseDate.cs" />
     <Compile Include="Models\Games\TimeToBeat.cs" />
+    <Compile Include="Models\FrontendRequest\Order.cs" />
+    <Compile Include="Models\FrontendRequest\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

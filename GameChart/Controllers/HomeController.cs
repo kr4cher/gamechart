@@ -12,6 +12,8 @@ namespace GameChart.Controllers
 {
     public class HomeController : Controller
     {
+        readonly ApiRequestHandler ApiRequest = new ApiRequestHandler();
+
         public ActionResult Index()
         {
             string medalsXML = System.IO.File.ReadAllText(Server.MapPath("Views/Shared/medals.xml"));
@@ -20,31 +22,10 @@ namespace GameChart.Controllers
         }
 
         [HttpGet]
-        public JsonResult APIAnswer(string[] call)
+        public JsonResult APIAnswer(string call)
         {
-            var data = ApiCall(call[0]);
+            var data = ApiRequest.ApiCall(call);
             return Json(data, JsonRequestBehavior.AllowGet);
-        }
-
-        private string ApiCall(string apirequest)
-        {
-            WebClient webclient = new WebClient();
-            webclient.Headers.Add("user-key", GetKey());
-            webclient.Headers.Add("Accept", "application/json");
-            try
-            {
-                return webclient.DownloadString("https://api-endpoint.igdb.com/" + apirequest);
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
-
-        private string GetKey()
-        {
-            var key = WebConfigurationManager.AppSettings["APIKey"];
-            return key;
         }
     }
 }
