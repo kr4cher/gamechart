@@ -7,5 +7,10 @@
         Filter Filter { get; set; }
         Order Order { get; set; }
         string Search { get; set; }
+
+        static Request ParseToRequest(string json)
+        {
+            return null;
+        }
     }
 }
