@@ -4,16 +4,10 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace GameChart.Models.Games
+namespace GameChart.Models.Games  
 {
-    public partial class Game
+    public partial class Game :GameShort
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         [JsonProperty("slug")]
         public string Slug { get; set; }
 
@@ -37,21 +31,6 @@ namespace GameChart.Models.Games
 
         [JsonProperty("franchises")]
         public long[] Franchises { get; set; }
-
-        [JsonProperty("rating")]
-        public double Rating { get; set; }
-
-        [JsonProperty("popularity")]
-        public double Popularity { get; set; }
-
-        [JsonProperty("total_rating")]
-        public double TotalRating { get; set; }
-
-        [JsonProperty("total_rating_count")]
-        public long TotalRatingCount { get; set; }
-
-        [JsonProperty("rating_count")]
-        public long RatingCount { get; set; }
 
         [JsonProperty("games")]
         public long[] GameGames { get; set; }
@@ -85,13 +64,7 @@ namespace GameChart.Models.Games
 
         [JsonProperty("themes")]
         public long[] Themes { get; set; }
-
-        [JsonProperty("genres")]
-        public long[] Genres { get; set; }
-
-        [JsonProperty("first_release_date")]
-        public long FirstReleaseDate { get; set; }
-
+        
         [JsonProperty("platforms")]
         public long[] Platforms { get; set; }
 
@@ -100,8 +73,5 @@ namespace GameChart.Models.Games
 
         [JsonProperty("alternative_names")]
         public AlternativeName[] AlternativeNames { get; set; }
-
-        [JsonProperty("cover")]
-        public Cover Cover { get; set; }
     }
 }

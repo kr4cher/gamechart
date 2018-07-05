@@ -7,8 +7,6 @@ using System.Web;
 using Newtonsoft.Json;
 using System.Web.Configuration;
 using System.Web.Mvc;
-using System.Xml;
-using System.Xml.Serialization;
 using System.IO;
 using System.Text;
 
@@ -32,26 +30,12 @@ namespace GameChart.Controllers
             {
                 var data = ApiRequest.ApiCall("/games/?fields=name,popularity&order=popularity:desc&limit=20");
                 var game = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(data);
-                return ToXML<Game>(game);
+                return ApiRequest.ToXML(game);
             }
             catch (Exception e)
             {
                 return e.Message;
             }
-        }
-
-        public string ToXML(T game)
-        {
-            XmlSerializer ser = new XmlSerializer(game.GetType());
-            string t = "";
-            using (MemoryStream st = new MemoryStream())
-            {
-                ser.Serialize(st, game);
-                var buffer = st.ToArray();
-                t = System.Text.Encoding.Default.GetString(buffer);
-
-            }
-            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -65,13 +49,7 @@ namespace GameChart.Controllers
                 {
                     games.Add(ApiRequest.GetGameById(game.Id));
                 }
-                XmlSerializer ser = new XmlSerializer(typeof(List<Game>), "GameChart");
-                string xml;
-                using (var stream = new StringWriter())
-                {
-                    ser.Serialize(stream, data);
-                    xml = stream.ToString();
-                }
+                var xml = ApiRequest.ToXML(games);
                 return xml;
             }
             catch (Exception e)
@@ -88,13 +66,7 @@ namespace GameChart.Controllers
                 if (Int32.TryParse(idString, out int id))
                 {
                     Game data = ApiRequest.GetGameById(id);
-                    XmlSerializer ser = new XmlSerializer(typeof(Game), "GameChart");
-                    string xml;
-                    using (var stream = new StringWriter())
-                    {
-                        ser.Serialize(stream, data);
-                        xml = stream.ToString();
-                    }
+                    string xml = ApiRequest.ToXML(data);
                     return xml;
                 }
                 throw new ApplicationException("id was not a string");

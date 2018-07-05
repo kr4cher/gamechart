@@ -32,12 +32,6 @@ namespace GameChart.Models.Games
         [JsonProperty("rating_count")]
         public long RatingCount { get; set; }
 
-        [JsonProperty("publishers")]
-        public long[] Publishers { get; set; }
-
-        [JsonProperty("category")]
-        public long Category { get; set; }
-
         [JsonProperty("genres")]
         public long[] Genres { get; set; }
 

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Configuration;
+using System.Xml.Serialization;
 using GameChart.Models.Games;
 
 namespace GameChart.Controllers
@@ -63,6 +66,19 @@ namespace GameChart.Controllers
             {
                 throw;
             }
+        }
+
+        public string ToXML<T>(T game)
+        {
+            XmlSerializer ser = new XmlSerializer(game.GetType());
+            string xml = "";
+            using (MemoryStream st = new MemoryStream())
+            {
+                ser.Serialize(st, game);
+                var buffer = st.ToArray();
+                xml = Encoding.Default.GetString(buffer);
+            }
+            return xml;
         }
     }
 }

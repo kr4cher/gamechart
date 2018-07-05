@@ -154,15 +154,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FrontendRequest\Filter.cs" />
     <Compile Include="Models\Games\Cover.cs" />
     <Compile Include="Models\Games\Game.cs" />
     <Compile Include="Models\Games\AlternativeName.cs" />
+    <Compile Include="Models\Games\GamesByGenre.cs" />
     <Compile Include="Models\Games\GameShort.cs" />
     <Compile Include="Models\Games\ReleaseDate.cs" />
     <Compile Include="Models\Games\TimeToBeat.cs" />
-    <Compile Include="Models\FrontendRequest\Order.cs" />
-    <Compile Include="Models\FrontendRequest\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
