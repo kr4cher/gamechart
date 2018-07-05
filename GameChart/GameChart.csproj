@@ -158,6 +158,7 @@
     <Compile Include="Models\Games\Cover.cs" />
     <Compile Include="Models\Games\Game.cs" />
     <Compile Include="Models\Games\AlternativeName.cs" />
+    <Compile Include="Models\Games\GameShort.cs" />
     <Compile Include="Models\Games\ReleaseDate.cs" />
     <Compile Include="Models\Games\TimeToBeat.cs" />
     <Compile Include="Models\FrontendRequest\Order.cs" />
