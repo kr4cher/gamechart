@@ -2,8 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 <script src="~/Scripts/index.js"></script>
+<style>
+    #{
+        display:block;
+    }
+</style>
 <div class="jumbotron">
-    @Html.RenderXml(ViewBag.Medals as string, Server.MapPath("Views/Shared/medals.xslt"))
     <input type="text" name="" value="" class="text"/>
     <input type="button" name="API" value="getAPI" class="button"/>
     <p class="lable"></p>

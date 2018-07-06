@@ -14,22 +14,20 @@ namespace GameChart.Controllers
 {
     public class HomeController : Controller
     {
-        readonly ApiRequestHandler ApiRequest = new ApiRequestHandler();
+        static public ApiRequestHandler ApiRequest = new ApiRequestHandler();
 
         public ActionResult Index()
         {
-            string medalsXML = System.IO.File.ReadAllText(Server.MapPath("Views/Shared/medals.xml"));
-            ViewBag.Medals = medalsXML;
             return View();
         }
 
         [HttpGet]
-        public string APIAnswer(string apiQuery)
+        public async System.Threading.Tasks.Task<string> APIAnswerAsync(string call)
         {
             try
             {
-                var data = ApiRequest.ApiCall("/games/?fields=name,popularity&order=popularity:desc&limit=20");
-                var game = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(data);
+                var data = ApiRequest.ApiCallAsync(call);
+                var game = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(await data);
                 return ApiRequest.ToXML(game);
             }
             catch (Exception e)
@@ -39,15 +37,68 @@ namespace GameChart.Controllers
         }
 
         [HttpGet]
-        public string SearchGames(string gameName)
+        public async System.Threading.Tasks.Task<string> GamesByPopularityAsync()
         {
             try
             {
-                List<Game> data = ApiRequest.SearchGames(gameName);
-                List<Game> games = new List<Game>();
-                foreach (var game in data)
+                var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres&order=popularity:desc&limit=50");
+                var games = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(await data);
+                long max = 0;
+                foreach (var game in games)
                 {
-                    games.Add(ApiRequest.GetGameById(game.Id));
+                    if (game.Genres != null)
+                    {
+                        var m = game.Genres.Max();
+                        if (m > max)
+                        {
+                            max = m;
+                        }
+                    }                    
+                }
+                GamesByGenre[] gamesbg = new GamesByGenre[max+1];
+                foreach (var game in games)
+                {
+                    if (game.Genres != null)
+                    {
+                        foreach (var ger in game.Genres)
+                        {
+                            if (gamesbg[ger] == null)
+                            {
+                                gamesbg[ger] = new GamesByGenre(game, await ApiRequest.GetGenreName(ger));
+                            }
+                            else
+                            {
+                                gamesbg[ger].Games.Add(game);
+                            }
+                        }
+                    }
+                }
+                List<GamesByGenre> returnGames = new List<GamesByGenre>();
+                foreach (var item in gamesbg)
+                {
+                    if (item != null)
+                    {
+                        returnGames.Add(item);
+                    }
+                }
+                return ApiRequest.ToXML(returnGames);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        public async System.Threading.Tasks.Task<string> SearchGamesAsync(string call)
+        {
+            try
+            {
+                List<Game> games = await ApiRequest.SearchGamesAsync(call);
+                List<GameShort> gamesShort = new List<GameShort>(games.Count);
+                foreach (var game in games)
+                {
+                    gamesShort.Add(game as GameShort);
                 }
                 var xml = ApiRequest.ToXML(games);
                 return xml;
@@ -59,13 +110,13 @@ namespace GameChart.Controllers
         }
 
         [HttpGet]
-        public string GameById(string idString)
+        public async System.Threading.Tasks.Task<string> GameByIdAsync(string call)
         {
             try
             {
-                if (Int32.TryParse(idString, out int id))
+                if (Int32.TryParse(call, out int id))
                 {
-                    Game data = ApiRequest.GetGameById(id);
+                    Game data = await ApiRequest.GetGameByIdAsync(id);
                     string xml = ApiRequest.ToXML(data);
                     return xml;
                 }
