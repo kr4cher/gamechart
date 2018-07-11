@@ -154,9 +154,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Games\Category.cs" />
     <Compile Include="Models\Games\Cover.cs" />
     <Compile Include="Models\Games\Game.cs" />
     <Compile Include="Models\Games\AlternativeName.cs" />
+    <Compile Include="Models\Games\GamesByCategory.cs" />
     <Compile Include="Models\Games\GamesByGenre.cs" />
     <Compile Include="Models\Games\GameSearch.cs" />
     <Compile Include="Models\Games\GameShort.cs" />

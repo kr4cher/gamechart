@@ -10,7 +10,7 @@
             var text = document.getElementsByClassName("text")[0];
             //var req = new Request("games", "1479");
             //var text = JSON.stringify(req);
-            xhr.open("GET", '/Home/GamesByPopularityAsync?call=' + text.value, true);
+            xhr.open("GET", '/Home/SortedGames?call=' + text.value, true);
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.onreadystatechange = (() => {
                 if (xhr.readyState === xhr.DONE && xhr.status) {

@@ -5,18 +5,18 @@ using System.Web;
 
 namespace GameChart.Models.Games
 {
-    public class GamesByGenre
+    public class GamesByCategory
     {
-        public Genres Name { get; set; }
+        public Category Name { get; set; }
         public List<GameShort> Games { get; set; } = new List<GameShort>();
 
-        public GamesByGenre(GameShort game, Genres name)
+        public GamesByCategory(GameShort category, Category name)
         {
-            Games.Add(game);
+            Games.Add(category);
             Name = name;
         }
 
-        public GamesByGenre()
+        public GamesByCategory()
         {
 
         }

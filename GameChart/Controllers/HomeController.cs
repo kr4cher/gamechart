@@ -35,13 +35,13 @@ namespace GameChart.Controllers
                 return e.Message;
             }
         }
-
+        
         [HttpGet]
         public async System.Threading.Tasks.Task<string> GamesByPopularityAsync()
         {
             try
             {
-                var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres&order=popularity:desc&limit=50");
+                var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres,first_release_date&order=popularity:desc&limit=50");
                 var games = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(await data);
                 long max = 0;
                 foreach (var game in games)
@@ -64,7 +64,7 @@ namespace GameChart.Controllers
                         {
                             if (gamesbg[ger] == null)
                             {
-                                gamesbg[ger] = new GamesByGenre(game, await ApiRequest.GetGenreName(ger));
+                                gamesbg[ger] = new GamesByGenre(game, await ApiRequest.GetGenre(ger));
                             }
                             else
                             {
@@ -89,6 +89,16 @@ namespace GameChart.Controllers
             }
         }
 
+        public async System.Threading.Tasks.Task<string> SortedGames (string call)
+        {
+
+            var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres,first_release_date&order=popularity:desc&limit=50");
+            var games = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(await data);
+            games.Sort();
+            return ApiRequest.ToXML(games);
+            
+        }
+        
         [HttpGet]
         public async System.Threading.Tasks.Task<string> SearchGamesAsync(string call)
         {

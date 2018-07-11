@@ -15,8 +15,9 @@ namespace GameChart.Controllers
     public class ApiRequestHandler
     {
         WebClient webclient { get; set; } = new WebClient();
-        Dictionary<long, string> GenreCache { get; set; } = new Dictionary<long, string>();
+        Dictionary<long, Genres> GenreCache { get; set; } = new Dictionary<long, Genres>();
         Dictionary<long, Game> GameCache { get; set; } = new Dictionary<long, Game>();
+        Dictionary<long, Category> CategoryCache { get; set; } = new Dictionary<long, Category>();
 
 
         public ApiRequestHandler()
@@ -81,16 +82,28 @@ namespace GameChart.Controllers
             }
         }
 
-        internal async System.Threading.Tasks.Task<string> GetGenreName(long ger)
+        internal async System.Threading.Tasks.Task<Genres> GetGenre(long ger)
         {
-            if (GenreCache.TryGetValue(ger, out string name))
+            if (GenreCache.TryGetValue(ger, out Genres genre))
             {
-                return name;
+                return genre;
             }
             var jsonResult = await webclient.DownloadStringTaskAsync("https://api-endpoint.igdb.com/" + "genres/" + ger);
-            var genre = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Genres>>(jsonResult)[0];
-            GenreCache.Add(ger, genre.Name);
-            return genre.Name;
+            var ge = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Genres>>(jsonResult)[0];
+            GenreCache.Add(ger, ge);
+            return ge;
+        }
+
+        internal async System.Threading.Tasks.Task<Category> GetCategoryName(long cat)
+        {
+            if (CategoryCache.TryGetValue(cat, out Category category))
+            {
+                return category;
+            }
+            var jsonResult = await webclient.DownloadStringTaskAsync("https://api-endpoint.igdb.com/" + "category/" + cat);
+            var ca = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Category>>(jsonResult)[0];
+            CategoryCache.Add(cat, ca);
+            return ca;
         }
 
         public string ToXML<T>(T game)
