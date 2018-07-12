@@ -1,0 +1,8 @@
+<!ELEMENT games (genre)*>
+<!ELEMENT genre (gname, (game)*)>
+<!ATTLIST genre id CDATA #REQUIRED>
+<!ELEMENT game (title, popularity)>
+<!ATTLIST game id CDATA #REQUIRED>
+<!ELEMENT gname (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT popularity (#PCDATA)>

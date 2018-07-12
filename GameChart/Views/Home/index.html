@@ -1,61 +1,59 @@
+<!DOCTYPE html>
 <html>
 
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		
-		<title>GameCharts Hauptseite</title>
-		
-		<script>
-			function loadXMLDoc(filename)
-			{
-				if (window.ActiveXObject)
-				{
-				xhttp = new ActiveXObject("Msxml2.XMLHTTP");
-				}
-			else 
-			{
-				xhttp = new XMLHttpRequest();
-			}
-			xhttp.open("GET", filename, false);
-			try {xhttp.responseType = "msxml-document"} catch(err) {} // Helping IE11
-			xhttp.send("");
-			return xhttp.responseXML;
-			}
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8"/>
+<title>GameCharts Hauptseite</title>
 
-			function showGames()
-			{
-				xml = loadXMLDoc("games.xml");
-				xsl = loadXMLDoc("allGames.xsl");
-			// Für Internet Explorer
-			if (window.ActiveXObject || xhttp.responseType == "msxml-document")
-			{
-				ex = xml.transformNode(xsl);
-				document.getElementById("gameDiv").innerHTML = ex;
-			}
-			//Für zeitgemäße Browser
-			else if (document.implementation && document.implementation.createDocument)
-			{
-				xsltProcessor = new XSLTProcessor();
-				xsltProcessor.importStylesheet(xsl);
-				resultDocument = xsltProcessor.transformToFragment(xml, document);
-				document.getElementById("gameDiv").appendChild(resultDocument);
-			}
+<script>
+	function loadXMLDoc(filename) {
+		if (window.ActiveXObject) {
+			xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} else {
+			xhttp = new XMLHttpRequest();
 		}
-		</script>
-	</head>
-	
-	<body onload="showGames()">
-		<h1 align="center">Game charts</h1>
-		
-		<div id="gameDiv" align="center"/>
-		
-		<div class="menu-bar" align="center">
-			<a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a>
-			<a href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a>
-			<a href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
-		</div>
+		xhttp.open("GET", filename, false);
+		try {
+			xhttp.responseType = "msxml-document"
+		} catch (err) {
+		} // Helping IE11
+		xhttp.send(null);
+		return xhttp.responseXML;
+	}
+
+	function showGames() {
+		xml = loadXMLDoc("games.xml");
+		xsl = loadXMLDoc("allGames.xsl");
+		// Fuer Internet Explorer
+		if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
+			ex = xml.transformNode(xsl);
+			document.getElementById("gameDiv").innerHTML = ex;
+		}
+		//Fuer zeitgemaeße Browser
+		else if (document.implementation
+				&& document.implementation.createDocument) {
+			xsltProcessor = new XSLTProcessor();
+			xsltProcessor.importStylesheet(xsl);
+			resultDocument = xsltProcessor.transformToFragment(xml, document);
+			document.getElementById("gameDiv").appendChild(resultDocument);
+		}
+	}
+</script>
+</head>
+
+<body onload="showGames()">
+	<h1 align="center">Game charts</h1>
+
+	<div id="gameDiv" align="center"></div>
+
+	<div class="menu-bar" align="center">
+		<a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a> <a
+			href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a> <a
+			href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
+	</div>
 
 
-	</body>
-	
+</body>
+
 </html>

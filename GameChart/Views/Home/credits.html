@@ -1,45 +1,51 @@
+<!DOCTYPE html>
 <html>
 
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<title>GameCharts Credits</title>
-	</head>
-	
-	<body>
-		<div align="center">	
-			<h1>Game Charts</h1>
-		</div>
-		
-		
-		<div align="center">	
-			<h2>Created by</h2>
-			<ul>
-				<li>Benjamin D.</li>
-				<li>Daniel M.</li>
-				<li>Jonas H.</li>
-				<li>Kevin H.</li>
-				<li>Lukas K.</li>
-				<li>Martin O.</li>
-			</ul>
-			
-			<h2>Using</h2>
-			<ul>
-				<li>HTML</li>
-				<li>CSS</li>
-				<li>XSL</li>
-				<li>XML</li>
-				<li>XSLT</li>
-				<li>IGDB-API</li>
-			</ul>
-			 
-		</div>
-		
-		<div class="menu-bar" align="center">
-			<a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a>
-			<a href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a>
-			<a href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8"/>
+<title>GameCharts Credits</title>
+
+<script type="text/javascript">
+		(() => {     function sendRequest() {         var xhr = new XMLHttpRequest();         var request = new Request("one", "two");         xhr.open("GET", '/Home/APIAnswer?call=' + request, true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird          xhr.setRequestHeader("Content-type", "application/json");         xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt             if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt                    if (xhr.responseText != "") {                      var res = JSON.parse(xhr.responseText);             //xhr.response beinhatet die antwort des servers                 }                 else {                 }             }         });         xhr.send();                                                     // request wird gesendet     }       class Request {         constructor(one, two) {             this.Endpoint = one;             this.test = two;         }     }  })();</script>
+
+</head>
+
+<body>
+	<div align="center">
+		<h1>Game Charts</h1>
 	</div>
-		
-	</body>
-	
+
+
+	<div align="center">
+		<h2>Created by</h2>
+		<ul>
+			<li>Benjamin D.</li>
+			<li>Daniel M.</li>
+			<li>Jonas H.</li>
+			<li>Kevin H.</li>
+			<li>Lukas K.</li>
+			<li>Martin O.</li>
+		</ul>
+
+		<h2>Using</h2>
+		<ul>
+			<li>HTML</li>
+			<li>CSS</li>
+			<li>XSL</li>
+			<li>XML</li>
+			<li>XSLT</li>
+			<li>IGDB-API</li>
+		</ul>
+
+	</div>
+
+	<div class="menu-bar" align="center">
+		<a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a> <a
+			href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a> <a
+			href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
+	</div>
+
+</body>
+
 </html>
