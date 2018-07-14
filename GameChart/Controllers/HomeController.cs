@@ -13,17 +13,13 @@ namespace GameChart.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Credits()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Impressum()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
