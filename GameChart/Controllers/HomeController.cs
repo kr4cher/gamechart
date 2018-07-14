@@ -21,6 +21,16 @@ namespace GameChart.Controllers
             return View();
         }
 
+        public ActionResult Credits()
+        {
+            return View();
+        }
+
+        public ActionResult Impressum()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async System.Threading.Tasks.Task<string> APIAnswerAsync(string call)
         {

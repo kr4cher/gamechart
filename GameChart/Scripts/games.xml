@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<games>
+	<genre id="action">
+		<gname>Action</gname>
+		<game id="1">
+			<title>Game 1</title>
+			<popularity>3.4</popularity>
+		</game>
+		<game id="2">
+			<title>Game 2</title>
+			<popularity>4.4</popularity>
+		</game>
+		<game id="6">
+			<title>Game 6</title>
+			<popularity>2.4</popularity>
+		</game>
+		<game id="7">
+			<title>Game 7</title>
+			<popularity>2.8</popularity>
+		</game>
+		<game id="8">
+			<title>Game 8</title>
+			<popularity>5.4</popularity>
+		</game>
+	</genre>
+	<genre id="genre2">
+	    <gname>Genre2</gname>
+		<game id="3">
+			<title>Game 3</title>
+			<popularity>2.4</popularity>
+		</game>
+		<game id="4">
+			<title>Game 4</title>
+			<popularity>7.4</popularity>
+		</game>
+		<game id="5">
+			<title>Game 5</title>
+			<popularity>1.4</popularity>
+		</game>
+	</genre>
+</games>

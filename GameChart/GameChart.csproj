@@ -175,6 +175,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\allGames.xsl" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\games.xml" />
+    <Content Include="Scripts\img\pattern1.png" />
+    <Content Include="Scripts\img\pattern2.png" />
+    <Content Include="Scripts\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -192,9 +198,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Views\Home\Credits.cshtml" />
+    <Content Include="Views\Home\Impressum.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
