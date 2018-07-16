@@ -5,9 +5,17 @@
             <head>
                <script type="text/javascript">
                  <![CDATA[         
-                    function showInfo(ID, NAME, POPULARITY) {
-                         alert(ID);
-                     }
+                      var el;
+                    function toggleModal(Id) {
+                      if (el != null && el!=document.getElementById(Id)){
+                        el.style.visibility = "hidden";
+                       }
+	                    el = document.getElementById(Id);
+	                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                    }
+                    function closeModal(Id) {
+	                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                    }
                  ]]>
               </script>
                 <link media="screen" href="style.css" type="text/css" rel="stylesheet"/>
@@ -37,14 +45,23 @@
 				<xsl:variable name="maxFont">30</xsl:variable>
 				<xsl:variable name="minFont">18</xsl:variable>
 				<xsl:variable name="fontDiff" select="$maxFont - $minFont"/>
-			<div>
-				<xsl:for-each select="Games/GameShort">
-					<xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * ((Popularity - $minValue) * $perc1))"/>
-					<button class="genre-button" style="font-size: {$fontSize}px" onclick="showInfo('{Id}', '{Name}', '{Popularity}')">
-						<xsl:value-of select="Name"/>
-					</button>
-				</xsl:for-each>
-			</div>
+        <div>
+          <xsl:for-each select="Games/GameShort">
+            <xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * ((Popularity - $minValue) * $perc1))"/>
+            <button class="genre-button" style="font-size: {$fontSize}px" onclick="toggleModal({Id})">
+              <xsl:value-of select="Name"/>
+            </button>
+            <div class="modal-div" id="{Id}">
+              <div>
+                <h3>
+                  <xsl:value-of select="Name"/>
+                </h3> <br/>
+                ID: <xsl:value-of select="Id"/> <br/>
+                <button class="modal-button" onclick="closeModal({Id})">Close</button>
+              </div>
+            </div>
+          </xsl:for-each>
+        </div>
 			<br/>
 			</div>
 		</div>
