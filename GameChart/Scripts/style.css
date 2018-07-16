@@ -60,36 +60,26 @@ a[href^="mailto"] {
 	arging: 10px;
 }
 
-.Action-div {
-	color: red;
-	width: 300px;
+.div-span {
+    align-content: center;
+    float:left;
 }
 
-.Action-button {
-	color: red;
-	background-color: Transparent;
-	outline: none;
-	border: 4px solid transparent;
-	border-radius: 20px 0px 20px 0px;
+.genre-div {
+    width: 600px;
+    display: inline-block;
+    align-content: center;
 }
 
-.Action-button:hover {
-	border: 4px dotted;
+.genre-button {
+    color: var(--text-color);
+    background-color: Transparent;
+    outline: none;
+    border: 4px solid transparent;
+    border-radius: 20px 0px 20px 0px;
 }
 
-.Genre2-div {
-	color: blue;
-	width: 300px;
-}
-
-.Genre2-button {
-	color: blue;
-	background-color: Transparent;
-	outline: none;
-	border-radius: 20px 0px 20px 0px;
-}
-
-.Genre2-button:hover {
+.genre-button:hover {
 	border: 4px dotted;
 }
 
@@ -139,3 +129,4 @@ body {
 	background-color: #4CAF50;
 	color: white;
 }
+

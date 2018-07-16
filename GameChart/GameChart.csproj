@@ -175,9 +175,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\allGames.xsl" />
+    <Content Include="Scripts\allGames.xsl">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\games.xml" />
+    <Content Include="Scripts\games.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\img\pattern1.png" />
     <Content Include="Scripts\img\pattern2.png" />
     <Content Include="Scripts\style.css" />
@@ -198,7 +202,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

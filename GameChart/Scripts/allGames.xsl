@@ -3,22 +3,30 @@
     <xsl:template match="/">
         <html>
             <head>
+               <script type="text/javascript">
+                 <![CDATA[         
+                    function showInfo(ID, NAME, POPULARITY) {
+                         alert(ID);
+                     }
+                 ]]>
+              </script>
                 <link media="screen" href="style.css" type="text/css" rel="stylesheet"/>
             </head>
             <body>
                 <div class="main">
-                    <xsl:apply-templates select="games/genre" />
+                    <xsl:apply-templates select="ArrayOfGamesByGenre" />
                 </div>
             </body>
         </html>
     </xsl:template>
-    <xsl:template match="games/genre">
-		<div class="{gname}-div"> <br/>
-		<i><xsl:value-of select="gname"/></i> <br/><br/>
+    <xsl:template match="ArrayOfGamesByGenre">
+    <span class="div-span">
+    <xsl:for-each select="GamesByGenre">
+		<div class="genre-div"> <br/>
+		<h2><xsl:value-of select="Name"/></h2> <br/><br/>
 			<div class="flex-container">
-				
-				<xsl:variable name="maxAmount" select="game[not(popularity &lt; ../game/popularity)]/popularity" />
-				<xsl:variable name="minValue" select="game[not(popularity &gt; ../game/popularity)]/popularity" />
+				<xsl:variable name="maxAmount" select="Games/GameShort[not(Popularity &lt; ../GameShort/Popularity)]/Popularity" />
+				<xsl:variable name="minValue" select="Games/GameShort[not(Popularity &gt; ../GameShort/Popularity)]/Popularity" />
 				<xsl:variable name="perc100" select="$maxAmount - $minValue"/>
 				<xsl:variable name="perc1">
 					<xsl:choose>
@@ -30,16 +38,17 @@
 				<xsl:variable name="minFont">18</xsl:variable>
 				<xsl:variable name="fontDiff" select="$maxFont - $minFont"/>
 			<div>
-				<xsl:for-each select="game">
-					<xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * ((popularity - $minValue) * $perc1))"/>
-
-					<button class="{../gname}-button" style="font-size: {$fontSize}px">
-						<xsl:value-of select="title"/>
+				<xsl:for-each select="Games/GameShort">
+					<xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * ((Popularity - $minValue) * $perc1))"/>
+					<button class="genre-button" style="font-size: {$fontSize}px" onclick="showInfo('{Id}', '{Name}', '{Popularity}')">
+						<xsl:value-of select="Name"/>
 					</button>
 				</xsl:for-each>
 			</div>
 			<br/>
 			</div>
 		</div>
+     </xsl:for-each>
+      </span>
     </xsl:template>
 </xsl:stylesheet>
