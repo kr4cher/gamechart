@@ -2,30 +2,53 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<link href="~/Views/Home/style.css" rel="stylesheet" />
+<script>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    
+			function loadXMLDoc(filename)
+			{
+				if (window.ActiveXObject)
+				{
+				xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+				}
+			else
+			{
+				xhttp = new XMLHttpRequest();
+			}
+			xhttp.open("GET", filename, false);
+			try {xhttp.responseType = "msxml-document"} catch(err) {} // Helping IE11
+			xhttp.send("");
+			return xhttp.responseXML;
+			}
+
+			function showGames()
+			{
+                xml = loadXMLDoc("games.xml");
+                xsl = loadXMLDoc("allGames.xsl");
+			// Für Internet Explorer
+			if (window.ActiveXObject || xhttp.responseType == "msxml-document")
+			{
+				ex = xml.transformNode(xsl);
+				document.getElementById("gameDiv").innerHTML = ex;
+			}
+			//Für zeitgemäße Browser
+			else if (document.implementation && document.implementation.createDocument)
+			{
+				xsltProcessor = new XSLTProcessor();
+				xsltProcessor.importStylesheet(xsl);
+				resultDocument = xsltProcessor.transformToFragment(xml, document);
+				document.getElementById("gameDiv").appendChild(resultDocument);
+			}
+		}
+</script>
+
+<h1 align="center">Game charts</h1>
+
+<div id="gameDiv" align="center" />
+
+<div class="menu-bar" align="center">
+    <a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a>
+    <a href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a>
+    <a href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
 </div>

@@ -160,6 +160,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\allGames.xsl" />
+    <Content Include="Views\Home\credits.html" />
+    <Content Include="Views\Home\games.xml" />
+    <Content Include="Views\Home\img\pattern1.png" />
+    <Content Include="Views\Home\img\pattern2.png" />
+    <Content Include="Views\Home\impressum.html" />
+    <Content Include="Views\Home\index.html" />
+    <Content Include="Views\Home\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
