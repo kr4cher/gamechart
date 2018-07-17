@@ -1,21 +1,24 @@
-﻿(() => {
+﻿
+(() => {
     document.addEventListener("DOMContentLoaded", (event) => {
-        showGames();
+        loadGames();
         var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
         apiButton.onclick = () => {
             
         }
     });
 
-    function sendRequest() {
+    function loadGames() {
        
             var xhr = new XMLHttpRequest();
             xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
             xhr.setRequestHeader("Content-type", "application/json");
+            xhr.overrideMimeType("text/xml");
             xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
                 if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
-                    if (xhr.responseText != "") {
-                        return xhr.response;            //xhr.response beinhatet die antwort des servers
+                    if (xhr.responseXML!= "") {
+                        showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
+                        location.reload;
                     }
                     else {
                     }
@@ -37,8 +40,7 @@
         return xhttp.responseXML;
     }
 
-    function showGames() {
-        //xml = sendRequest(); 
+    function showGames(xml) {
         xml = loadXMLDoc("../Scripts/games.xml");
         xsl = loadXMLDoc("../Scripts/allGames.xsl");
         // Für Internet Explorer
