@@ -42,7 +42,7 @@
 
     function showGames(xml) {
         xml = loadXMLDoc("../Scripts/games.xml");
-        xsl = loadXMLDoc("../Scripts/allGames.xsl");
+        xsl = loadXMLDoc("../Scripts/displayGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
             ex = xml.transformNode(xsl);
