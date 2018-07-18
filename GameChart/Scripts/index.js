@@ -1,26 +1,24 @@
 ﻿(() => {
     document.addEventListener("DOMContentLoaded", (event) => {
-        showGames();
-        var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
-        apiButton.onclick = sendRequest();
+    sendRequest()
+        //var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
+        //apiButton.onclick = sendRequest();
     });
 
     function sendRequest() {
-        return () => {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", '/Home/APIAnswer?call=' + "das was du haben willst", true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
-                if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
-                    if (xhr.responseText != "") {
-                        var res = JSON.parse(xhr.responseText);             //xhr.response beinhatet die antwort des servers
-                    }
-                    else {
-                    }
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
+            if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
+                if (xhr.responseText != "") {//xhr.response beinhatet die antwort des servers
+                    showGames(xhr.response);
                 }
-            });
-            xhr.send();                                                     // request wird gesendet
-        }                                                  
+                else {
+                }
+            }
+        });
+        xhr.send();                                                     // request wird gesendet                               
     }
 
     function loadXMLDoc(filename) {
@@ -36,8 +34,7 @@
         return xhttp.responseXML;
     }
 
-    function showGames() {
-        xml = loadXMLDoc("../Scripts/games.xml");
+    function showGames(xml) {
         xsl = loadXMLDoc("../Scripts/allGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
