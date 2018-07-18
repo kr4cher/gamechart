@@ -1,24 +1,30 @@
-﻿(() => {
+﻿
+(() => {
     document.addEventListener("DOMContentLoaded", (event) => {
-    sendRequest()
-        //var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
-        //apiButton.onclick = sendRequest();
+        loadGames();
+        var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
+        apiButton.onclick = () => {
+            
+        }
     });
 
-    function sendRequest() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
-            if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
-                if (xhr.responseText != "") {//xhr.response beinhatet die antwort des servers
-                    showGames(xhr.response);
+    function loadGames() {
+       
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.overrideMimeType("text/xml");
+            xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
+                if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
+                    if (xhr.responseXML!= "") {
+                        showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
+                        location.reload;
+                    }
+                    else {
+                    }
                 }
-                else {
-                }
-            }
-        });
-        xhr.send();                                                     // request wird gesendet                               
+            });
+            xhr.send();                                                     // request wird gesendet                                 
     }
 
     function loadXMLDoc(filename) {
@@ -35,7 +41,8 @@
     }
 
     function showGames(xml) {
-        xsl = loadXMLDoc("../Scripts/allGames.xsl");
+        xml = loadXMLDoc("../Scripts/games.xml");
+        xsl = loadXMLDoc("../Scripts/displayGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
             ex = xml.transformNode(xsl);
@@ -48,5 +55,9 @@
             resultDocument = xsltProcessor.transformToFragment(xml, document);
             document.getElementById("gameDiv").appendChild(resultDocument);
         }
+    }
+
+    function showInfo(ID) {
+        alert(ID);
     }
 })(); 

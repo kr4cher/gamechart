@@ -1,41 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<games>
-	<genre id="action">
-		<gname>Action</gname>
-		<game id="1">
-			<title>Game 1</title>
-			<popularity>3.4</popularity>
-		</game>
-		<game id="2">
-			<title>Game 2</title>
-			<popularity>4.4</popularity>
-		</game>
-		<game id="6">
-			<title>Game 6</title>
-			<popularity>2.4</popularity>
-		</game>
-		<game id="7">
-			<title>Game 7</title>
-			<popularity>2.8</popularity>
-		</game>
-		<game id="8">
-			<title>Game 8</title>
-			<popularity>5.4</popularity>
-		</game>
-	</genre>
-	<genre id="genre2">
-	    <gname>Genre2</gname>
-		<game id="3">
-			<title>Game 3</title>
-			<popularity>2.4</popularity>
-		</game>
-		<game id="4">
-			<title>Game 4</title>
-			<popularity>7.4</popularity>
-		</game>
-		<game id="5">
-			<title>Game 5</title>
-			<popularity>1.4</popularity>
-		</game>
-	</genre>
-</games>
+<?xml version="1.0"?>
+<ArrayOfGamesByGenre xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GamesByGenre>
+    <Name>Point-and-click</Name>
+    <Games>
+      <Game>
+        <Id>1823</Id>
+        <Name>Slime MoriMori Dragon Quest: ShÃ…Âgeki no Shippo Dan</Name>
+        <Slug>slime-morimori-dragon-quest-shogeki-no-shippo-dan</Slug>
+        <Url>https://www.igdb.com/games/slime-morimori-dragon-quest-shogeki-no-shippo-dan</Url>
+        <CreatedAt>1352646435406</CreatedAt>
+        <UpdatedAt>1530134272088</UpdatedAt>
+        <Collection>348</Collection>
+        <Franchise>0</Franchise>
+        <Rating>0</Rating>
+        <Popularity>1.333333333333333</Popularity>
+        <TotalRating>0</TotalRating>
+        <TotalRatingCount>0</TotalRatingCount>
+        <RatingCount>0</RatingCount>
+        <Category>0</Category>
+        <FirstReleaseDate>1068768000000</FirstReleaseDate>
+        <Platforms>
+          <long>24</long>
+        </Platforms>
+        <ReleaseDates>
+          <ReleaseDate>
+            <Category>0</Category>
+            <Platform>24</Platform>
+            <Date>1068768000000</Date>
+            <Region>5</Region>
+            <Human>2003-Nov-14</Human>
+            <Y>2003</Y>
+            <M>11</M>
+          </ReleaseDate>
+        </ReleaseDates>
+        <AlternativeNames>
+          <AlternativeName>
+            <Name>Slime of Gusto Dragon Quest: Ballistic Tails Brigade</Name>
+          </AlternativeName>
+          <AlternativeName>
+            <Name>Ã£â€šÂ¹Ã£Æ’Â©Ã£â€šÂ¤Ã£Æ’Â Ã£â€šâ€šÃ£â€šÅ Ã£â€šâ€šÃ£â€šÅ Ã£Æ’â€°Ã£Æ’Â©Ã£â€šÂ´Ã£Æ’Â³Ã£â€šÂ¯Ã£â€šÂ¨Ã£â€šÂ¹Ã£Æ’Ë† Ã¨Â¡ÂÃ¦â€™Æ’Ã£ÂÂ®Ã£Ââ€”Ã£ÂÂ£Ã£ÂÂ½Ã¥â€ºÂ£</Name>
+          </AlternativeName>
+        </AlternativeNames>
+        <Cover>
+          <Url>//images.igdb.com/igdb/image/upload/t_thumb/mqhzr4gmvzrp85x4qysf.jpg</Url>
+          <CloudinaryId>mqhzr4gmvzrp85x4qysf</CloudinaryId>
+          <Width>450</Width>
+          <Height>287</Height>
+        </Cover>
+      </Game>
+    </Games>
+  </GamesByGenre>
+</ArrayOfGamesByGenre>

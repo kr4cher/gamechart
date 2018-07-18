@@ -1,19 +1,26 @@
-:root { 
-	--text-color: #00ff00;
+:root {
+    --text-color: #00f000;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 16px;
+    font-weight:normal;
 }
 
 h1 {
-	font-family: Impact, Charcoal, sans-serif;
 	color: white;
 	font-size: 50px;
 	text-shadow: 0 10px 40px black;
 }
 
 h2 {
-	font-family: Impact, Charcoal, sans-serif;
 	color: white;
 	font-size: 30px;
 	text-shadow: 0 2px 30px black;
+}
+
+h3 {
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 2px 20px black;
 }
 
 ul {
@@ -24,7 +31,7 @@ ul {
 li {
 	color: var(--text-color);
 	font-size: 20px;
-	text-shadow: 0 0 10px white;
+	text-shadow: 0 0 10px #a0a0a0;
 }
 
 li:hover {
@@ -60,38 +67,29 @@ a[href^="mailto"] {
 	arging: 10px;
 }
 
-.Action-div {
-	color: red;
-	width: 300px;
+.div-span {
+    align-content: center;
+    float:left;
 }
 
-.Action-button {
-	color: red;
-	background-color: Transparent;
-	outline: none;
-	border: 4px solid transparent;
-	border-radius: 20px 0px 20px 0px;
+.genre-div {
+    width: 600px;
+    display: inline-block;
+    align-content: center;
 }
 
-.Action-button:hover {
+.game-button {
+    color: var(--text-color);
+    background-color: Transparent;
+    outline: none;
+    border: 3px solid transparent;
+    border-radius: 20px 0px 20px 0px;
+}
+
+.game-button:hover {
 	border: 4px dotted;
 }
 
-.Genre2-div {
-	color: blue;
-	width: 300px;
-}
-
-.Genre2-button {
-	color: blue;
-	background-color: Transparent;
-	outline: none;
-	border-radius: 20px 0px 20px 0px;
-}
-
-.Genre2-button:hover {
-	border: 4px dotted;
-}
 
 body {
 	background-image: url("img/pattern1.png");
@@ -139,3 +137,49 @@ body {
 	background-color: #4CAF50;
 	color: white;
 }
+
+.modal-div {
+    visibility: hidden;
+    position: fixed;
+    top:20px;
+    left:20px;
+    text-align: center;
+    z-index: 1000;
+    background-color: transparent;
+    background-image: url("img/pattern2.png");
+    border: 2px solid #000;
+    border-radius: 20px 0px 20px 0px;
+    padding: 15px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.modal-button {
+    color: var(--text-color);
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 16px;
+    background-color: Transparent;
+    border: 3px solid transparent;
+    border-radius: 0px 0px 20px 0px;
+    display: inline-block;
+    width: 48%;
+}
+
+.modal-button:hover {
+        border: 3px dotted;
+}
+
+.game-link {
+    display: inline-block;
+    width: 48%;
+    color: var(--text-color);
+    background-color: Transparent;
+    outline: none;
+    border: 3px solid transparent;
+    border-radius: 0px 0px 0px 20px;
+    text-decoration: none;
+}
+
+    .game-link:hover {
+        border: 3px dotted;
+    }
