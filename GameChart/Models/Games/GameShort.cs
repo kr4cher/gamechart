@@ -23,6 +23,15 @@ namespace GameChart.Models.Games
         [JsonProperty("genres")]
         public long[] Genres { get; set; }
 
+        [JsonProperty("cover")]
+        public Cover Cover { get; set; }
+
+        [JsonProperty("url")]
+        public string URL { get; set; }
+
+        [JsonProperty("release_dates")]
+        public ReleaseDate[] ReleaseDates { get; set; }
+
         public int CompareTo(GameShort game)
         {
             if (FirstReleaseDate == 0 && game.FirstReleaseDate == 0)

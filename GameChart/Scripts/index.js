@@ -2,10 +2,6 @@
 (() => {
     document.addEventListener("DOMContentLoaded", (event) => {
         loadGames();
-        var apiButton = document.getElementsByClassName("namedesButtons")[0]; //name das buttons
-        apiButton.onclick = () => {
-            
-        }
     });
 
     function loadGames() {
@@ -41,7 +37,7 @@
     }
 
     function showGames(xml) {
-        xml = loadXMLDoc("../Scripts/games.xml");
+        //xml = loadXMLDoc("../Scripts/games.xml");
         xsl = loadXMLDoc("../Scripts/displayGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
@@ -55,6 +51,33 @@
             resultDocument = xsltProcessor.transformToFragment(xml, document);
             document.getElementById("gameDiv").appendChild(resultDocument);
         }
+        var gameButton = document.getElementsByClassName("game-button");
+        for (var i = 0; i < gameButton.length; i++) {
+            var id = gameButton[i].id.split(":")[1];
+            gameButton[i].onclick = onclicktoggle(id);
+        }
+    }
+
+    function onclicktoggle(id) {
+        return () => {
+                toggleModal(id);
+        };
+    }
+
+    var el;
+    function toggleModal(Id) {
+        if (el != null && el != document.getElementById(Id)) {
+            el.style.visibility = "hidden";
+        }
+        el = document.getElementById(Id);
+        el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+        var button = el.getElementsByClassName("modal-button")[0];
+        button.onclick = (() => {
+            closeModal(Id);
+        });
+    }
+    function closeModal(Id) {
+        el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
 
     function showInfo(ID) {

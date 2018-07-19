@@ -51,8 +51,9 @@ namespace GameChart.Controllers
         {
             try
             {
-                var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres,first_release_date&order=popularity:desc&limit=50");
-                var games = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(await data);
+                var data = ApiRequest.ApiCallAsync("/games/?fields=name,popularity,genres,first_release_date,cover,url,release_dates&order=popularity:desc&limit=50");
+                var st = await data;
+                var games = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameShort>>(st);
                 long max = 0;
                 foreach (var game in games)
                 {

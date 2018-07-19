@@ -4,19 +4,6 @@
         <html>
             <head>
                <script type="text/javascript">
-                 <![CDATA[         
-                      var el;
-                    function toggleModal(Id) {
-                      if (el != null && el!=document.getElementById(Id)){
-                        el.style.visibility = "hidden";
-                       }
-	                    el = document.getElementById(Id);
-	                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-                    }
-                    function closeModal(Id) {
-	                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-                    }
-                 ]]>
               </script>
                 <link media="screen" href="style.css" type="text/css" rel="stylesheet"/>
             </head>
@@ -33,8 +20,8 @@
 		<div class="genre-div"> <br/>
 		<h2><xsl:value-of select="Name"/></h2> <br/><br/>
 			<div class="flex-container">
-				<xsl:variable name="maxAmount" select="Games/Game[not(Popularity &lt; ../Game/Popularity)]/Popularity" />
-				<xsl:variable name="minValue" select="Games/Game[not(Popularity &gt; ../Game/Popularity)]/Popularity" />
+				<xsl:variable name="maxAmount" select="Games/GameShort[not(Popularity &lt; ../GameShortame/Popularity)]/Popularity" />
+				<xsl:variable name="minValue" select="Games/GameShort[not(Popularity &gt; ../GameShort/Popularity)]/Popularity" />
 				<xsl:variable name="perc100" select="$maxAmount - $minValue"/>
 				<xsl:variable name="perc1">
 					<xsl:choose>
@@ -46,9 +33,9 @@
 				<xsl:variable name="minFont">18</xsl:variable>
 				<xsl:variable name="fontDiff" select="$maxFont - $minFont"/>
         <div>
-          <xsl:for-each select="Games/Game">
+          <xsl:for-each select="Games/GameShort">
             <xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * ((Popularity - $minValue) * $perc1))"/>
-            <button class="game-button" style="font-size: {$fontSize}px" onclick="toggleModal({Id})">
+            <button class="game-button" style="font-size: {$fontSize}px" id="id:{Id}">
               <xsl:value-of select="Name"/>
             </button>
             <div class="modal-div" id="{Id}">
@@ -59,10 +46,10 @@
                 <br/>
                 ID: <xsl:value-of select="Id"/> 
                 <br/>
-                 Release Date: <xsl:value-of select="ReleaseDates/ReleaseDate/Human"/>
+                 Release Date: <xsl:value-of select="ReleaseDates/Human"/>
                 <br/>
                 <a class="game-link"  target="_blank" rel="noopener noreferrer" href="{Url}">More</a>
-                <button class="modal-button" onclick="closeModal({Id})">Close</button>
+                <button class="modal-button">Close</button>
               </div>
             </div>
           </xsl:for-each>
