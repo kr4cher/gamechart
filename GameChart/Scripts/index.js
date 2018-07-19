@@ -37,7 +37,6 @@
     }
 
     function showGames(xml) {
-        //xml = loadXMLDoc("../Scripts/games.xml");
         xsl = loadXMLDoc("../Scripts/displayGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
