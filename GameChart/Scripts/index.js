@@ -55,6 +55,17 @@
             var id = gameButton[i].id.split(":")[1];
             gameButton[i].onclick = onclicktoggle(id);
         }
+        var releasedates = document.getElementsByClassName("ReleaseDate");
+        for (var j = 0; j < releasedates.length; j++) {
+            var ticks = releasedates[j].innerHTML;
+            if (parseInt(ticks) > 0) {
+                var date = new Date(parseInt(ticks));
+                releasedates[j].innerHTML = date.toDateString();
+            }
+            else {
+                releasedates[j].innerHTML = "No releasedate set";
+            }
+        }
     }
 
     function onclicktoggle(id) {

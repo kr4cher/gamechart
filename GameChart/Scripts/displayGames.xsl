@@ -46,7 +46,7 @@
                 <br/>
                 ID: <xsl:value-of select="Id"/> 
                 <br/>
-                 Release Date: <xsl:value-of select="FirstReleaseDate"/>
+                Release Date: <span class="ReleaseDate"><xsl:value-of select="FirstReleaseDate"/></span>
               <br/>
                 <a class="game-link"  target="_blank" rel="noopener noreferrer" href="{URL}">More</a>
                 <button class="modal-button">Close</button>
