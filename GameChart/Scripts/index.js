@@ -4,23 +4,25 @@
         loadGames();
     });
 
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
     function loadGames() {
-       
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.overrideMimeType("text/xml");
-            xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
-                if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
-                    if (xhr.responseXML!= "") {
-                        showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
-                        location.reload;
-                    }
-                    else {
-                    }
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.overrideMimeType("text/xml");
+        xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
+            if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
+                if (xhr.responseXML != "") {
+                    showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
                 }
-            });
-            xhr.send();                                                     // request wird gesendet                                 
+                else {
+                }
+            }
+        });
+        xhr.send();                                                     // request wird gesendet                                 
     }
 
     function loadXMLDoc(filename) {
@@ -60,7 +62,7 @@
             var ticks = releasedates[j].innerHTML;
             if (parseInt(ticks) > 0) {
                 var date = new Date(parseInt(ticks));
-                releasedates[j].innerHTML = date.toDateString();
+                releasedates[j].innerHTML = monthNames[date.getMonth() - 1] + " " + date.getFullYear();
             }
             else {
                 releasedates[j].innerHTML = "No releasedate set";
@@ -70,7 +72,7 @@
 
     function onclicktoggle(id) {
         return () => {
-                toggleModal(id);
+            toggleModal(id);
         };
     }
 
