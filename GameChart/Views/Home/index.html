@@ -1,0 +1,56 @@
+<html>
+
+	<head>
+            <script>
+
+
+                function loadXMLDoc(filename) {
+                    if (window.ActiveXObject) {
+                        xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    else {
+                        xhttp = new XMLHttpRequest();
+                    }
+                    xhttp.open("GET", filename, false);
+                    try { xhttp.responseType = "msxml-document" } catch (err) { } // Helping IE11
+                    xhttp.send("");
+                    return xhttp.responseXML;
+                }
+
+                function showGames() {
+                    xml = loadXMLDoc("games.xml");
+                    xsl = loadXMLDoc("allGames.xsl");
+                    // Für Internet Explorer
+                    if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
+                        ex = xml.transformNode(xsl);
+                        document.getElementById("gameDiv").innerHTML = ex;
+                    }
+                    //Für zeitgemäße Browser
+                    else if (document.implementation && document.implementation.createDocument) {
+                        xsltProcessor = new XSLTProcessor();
+                        xsltProcessor.importStylesheet(xsl);
+                        resultDocument = xsltProcessor.transformToFragment(xml, document);
+                        document.getElementById("gameDiv").appendChild(resultDocument);
+                    }
+                }
+            </script>
+        <link href="~/Views/Home/style.css" rel="stylesheet" />
+	</head>
+	
+
+
+        <body onload="showGames()"> 
+
+        <h1 align="center">Game charts</h1>
+
+        <div id="gameDiv" align="center" />
+
+        <div class="menu-bar" align="center">
+            <a href="index.html" class="menu-button">&nbsp;Home&nbsp;</a>
+            <a href="credits.html" class="menu-button">&nbsp;Credits&nbsp;</a>
+            <a href="impressum.html" class="menu-button">&nbsp;Impressum&nbsp;</a>
+        </div>
+
+    </body>
+	
+</html>
