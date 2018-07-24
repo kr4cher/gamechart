@@ -1,12 +1,16 @@
 ﻿
 (() => {
     document.addEventListener("DOMContentLoaded", (event) => {
+        var button = document.getElementsByClassName("download")[0];
+        button.onclick = download;
         loadGames();
     });
 
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+
+    var XMLFile;
 
     function loadGames() {
         var xhr = new XMLHttpRequest();
@@ -38,7 +42,21 @@
         return xhttp.responseXML;
     }
 
+    function download() {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLFile));
+        element.setAttribute('download', "xml.txt");
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
     function showGames(xml) {
+        XMLFile = new XMLSerializer().serializeToString(xml.documentElement);
         xsl = loadXMLDoc("../Scripts/displayGames.xsl");
         // Für Internet Explorer
         if (window.ActiveXObject || xhttp.responseType === "msxml-document") {
