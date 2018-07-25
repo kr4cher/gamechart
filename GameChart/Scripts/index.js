@@ -10,13 +10,13 @@
 
     function loadGames() {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
+        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       		//pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.overrideMimeType("text/xml");
         xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
             if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
                 if (xhr.responseXML != "") {
-                    showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
+                    showGames(xhr.responseXML);            					//xhr.response beinhatet die antwort des servers
                 }
                 else {
                 }
