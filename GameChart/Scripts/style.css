@@ -120,7 +120,9 @@ body {
 	flex-wrap: wrap;
 	-webkit-align-content: center;
 	align-content: center;
+    justify-content: center;
 	width: 100%;
+
 }
 
 .navbar {
