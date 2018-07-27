@@ -14,13 +14,13 @@
 
     function loadGames() {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       //pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
+        xhr.open("GET", '/Home/GamesByPopularityAsync', true);       		//pfad an welche Url die anfrage geschickt wird "request" ist eine variable die an den server weitergegeben wird 
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.overrideMimeType("text/xml");
         xhr.onreadystatechange = (() => {                               // evendlistener bei antwort wird gesetzt
             if (xhr.readyState == xhr.DONE && xhr.status) {             // es wird geschaut ob der server Antwortcode 200 schickt   
                 if (xhr.responseXML != "") {
-                    showGames(xhr.responseXML);            //xhr.response beinhatet die antwort des servers
+                    showGames(xhr.responseXML);            					//xhr.response beinhatet die antwort des servers
                 }
                 else {
                 }
@@ -43,16 +43,28 @@
     }
 
     function download() {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLFile));
-        element.setAttribute('download', "xml.txt");
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        
+        var isEdge = !isIE && !!window.StyleMedia;
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+        if (isEdge) {
+            var xmlContent = XMLFile;
+            var blob = new Blob([xmlContent], {
+                type: "application/xml"
+            });
+            window.navigator.msSaveOrOpenBlob(blob, "GameChart" + ".xml");
+        }
+        else {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLFile));
+            element.setAttribute('download', "GameChart.xml");
 
-        element.click();
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
 
-        document.body.removeChild(element);
+            document.body.removeChild(element);
+        }
     }
 
     function showGames(xml) {
@@ -70,11 +82,13 @@
             resultDocument = xsltProcessor.transformToFragment(xml, document);
             document.getElementById("gameDiv").appendChild(resultDocument);
         }
+        //click event
         var gameButton = document.getElementsByClassName("game-button");
         for (var i = 0; i < gameButton.length; i++) {
             var id = gameButton[i].id.split(":")[1];
             gameButton[i].onclick = onclicktoggle(id);
         }
+        //Datum Format anpassen
         var releasedates = document.getElementsByClassName("ReleaseDate");
         for (var j = 0; j < releasedates.length; j++) {
             var ticks = releasedates[j].innerHTML;
