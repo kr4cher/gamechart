@@ -1,5 +1,5 @@
 ﻿
-(() => {
+//(() => {
     document.addEventListener("DOMContentLoaded", (event) => {
         var button = document.getElementsByClassName("download")[0];
         button.onclick = download;
@@ -113,4 +113,4 @@
     function showInfo(ID) {
         alert(ID);
     }
-})(); 
+//})(); 

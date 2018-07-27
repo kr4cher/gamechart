@@ -64,7 +64,7 @@ a[href^="mailto"] {
 .menu-button:hover {
 	background-color: white;
 	color: black;
-	arging: 10px;
+	margin: 10px;
 }
 
 .div-span {
