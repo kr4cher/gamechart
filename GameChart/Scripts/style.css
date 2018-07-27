@@ -36,13 +36,6 @@ li {
 
 li:hover {
 	text-shadow: 0 0 10px black;
-/* 	font-size: 26px; */
-}
-
-a[href^="mailto"] {
-	color: var(--text-color);
-	text-decoration: none !important;
-/* 	font-family: Impact, Charcoal, sans-serif; */
 }
 
 .menu-bar {
@@ -53,6 +46,12 @@ a[href^="mailto"] {
 	right: 0%;
 	outline: 2px dashed grey;
 	background-image: url("img/pattern2.png");
+}
+
+a[href^="mailto"] {
+	color: var(--text-color);
+	text-decoration: none !important;
+/* 	font-family: Impact, Charcoal, sans-serif; */
 }
 
 .menu-button {

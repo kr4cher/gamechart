@@ -175,6 +175,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\allGames.xsl" />
+    <Content Include="Scripts\img\favicon.png" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\displayGames.xsl">
       <SubType>Designer</SubType>

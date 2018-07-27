@@ -41,7 +41,7 @@
             <div>
               <xsl:for-each select="Games/GameShort">
                 <xsl:variable name="fontSize" select="$minFont + ceiling($fontDiff div 100 * 
-					((Popularity - $minValue) * $perc1))"/>
+					          ((Popularity - $minValue) * $perc1))"/>
                 <button class="game-button" style="font-size: {$fontSize}px" id="id:{Id}">
                   <xsl:value-of select="Name"/>
                 </button>
